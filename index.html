@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Vote Adhyaay Karnwal For President</title>
+  <link rel="stylesheet" href="style.css">
+  <link href='https://fonts.googleapis.com/css?family=Varela Round' rel='stylesheet'>
+</head>
+<body>
+  <div id="particle-container"></div>
+  <div id="start-screen" class="screen">
+    <h1>Vote Adhyaay Karnwal For President</h1>
+    <h2>Video Game Made by Adhyaay Karnwal (10/21/24)</h2>
+    <div id="candidate-photos"></div>
+    <p>Avoid obstacles and collect votes! The player with the highest score wins $15 after election day. Enter your real name or school email to allow me to contact you to claim the prize.</p>
+    <input type="text" id="player-name" placeholder="Enter your name">
+    <button id="start-btn">Start Campaign</button>
+    <button id="view-leaderboard-start-btn">View Leaderboard</button>
+  </div>
+
+  <div id="game-container" class="hidden">
+    <div id="game" class="game">
+      <div id="player" class="player"></div>
+    </div>
+    <div class="score-board">
+      <h2>Votes: <span id="score">0</span></h2>
+      <h3>Combo: <span id="combo">0</span>x</h3>
+    </div>
+  </div>
+
+  <div id="game-over-screen" class="hidden screen">
+    <h2>Campaign Over!</h2>
+    <h3>Your votes: <span id="final-score"></span></h3>
+    <img id="qr-code" src="qr.png" alt="QR Code">
+    <p>Scan this QR code to learn more about your president Adhyaay Karnwal</p>
+    <button id="retry-btn">Try Again</button>
+    <button id="view-leaderboard-btn">View Leaderboard</button>
+  </div>
+
+  <div id="leaderboard-screen" class="hidden screen">
+    <h2>Top 10 Supporters</h2>
+    <ol id="leaderboard-list"></ol>
+    <button id="back-to-game-btn">Back to Game</button>
+  </div>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-analytics.js";
+    import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAZDBNi36r7KLrdCqWsrqKDm40ERoGmLmM",
+      authDomain: "voteforadhyaay.firebaseapp.com",
+      projectId: "voteforadhyaay",
+      storageBucket: "voteforadhyaay.appspot.com",
+      messagingSenderId: "290244601513",
+      appId: "1:290244601513:web:23c7a2609648f9be1aabb8",
+      measurementId: "G-006FZWVV8G"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const database = getDatabase(app);
+
+    // Make Firebase services available globally
+    window.firebaseDatabase = database;
+    window.firebaseRef = ref;
+    window.firebaseSet = set;
+    window.firebaseGet = get;
+    window.firebaseChild = child;
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

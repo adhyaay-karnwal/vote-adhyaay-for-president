@@ -1,0 +1,271 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Varela Round', sans-serif;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+#particle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  background-color: rgba(26, 26, 46, 0.8);
+  overflow-y: auto;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #ff0000;
+  text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+  animation: pulse 2s infinite;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+#candidate-photos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.candidate-photo {
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+input[type="text"] {
+  width: 100%;
+  max-width: 250px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  font-size: 0.9rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+button {
+  padding: 12px 24px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 5px 0;
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  transform: translateY(-3px);
+}
+
+.hidden {
+  display: none;
+}
+
+#game-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #1a1a2e;
+}
+
+.game {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.player {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.obstacle {
+  position: absolute;
+  top: 0;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: soft-light;
+}
+
+.power-up {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ffd700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+.score-board {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #ffffff;
+  font-size: 1.2rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 5px;
+
+}
+
+#leaderboard-list {
+  list-style-position: inside;
+  text-align: left;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+#leaderboard-list li {
+  margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+  .screen {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 0.8rem;
+  }
+
+  .candidate-photo {
+    width: 80px;
+    height: 80px;
+  }
+
+  #game-container {
+    height: 100%;
+    width: 100%;
+  }
+
+  .game {
+    height: calc(100% - 60px);
+  }
+
+  .score-board {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .score-board h2, .score-board h3 {
+    margin: 0 10px;
+    font-size: 0.9rem;
+  }
+
+  .player {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#obstacle-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.preview-obstacle {
+  width: 40px;
+  height: 40px;
+  margin: 0 10px;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+  border-radius: 5px;
+}
+
+#qr-code {
+  width: 150px;
+  height: 150px;
+  margin: 20px 0;
+}
+
+@media (max-width: 768px) {
+  #qr-code {
+    width: 100px;
+    height: 100px;
+  }
+}
