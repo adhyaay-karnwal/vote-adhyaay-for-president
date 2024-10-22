@@ -18,6 +18,7 @@
     <input type="text" id="player-name" placeholder="Enter your name">
     <button id="start-btn">Start Campaign</button>
     <button id="view-leaderboard-start-btn">View Leaderboard</button>
+    <button id="how-to-play-btn">How to Play</button>
   </div>
 
   <div id="game-container" class="hidden">
@@ -42,6 +43,18 @@
     <h2>Top 10 Supporters</h2>
     <ol id="leaderboard-list"></ol>
     <button id="back-to-game-btn">Back to Game</button>
+  </div>
+
+  <div id="how-to-play-screen" class="hidden screen">
+    <h2>How to Play</h2>
+    <ul>
+      <li>Drag anywhere on the screen to move your character</li>
+      <li>Avoid the colorful obstacles with candidate faces</li>
+      <li>Collect yellow dots for score multipliers(combo = faster score increase)</li>
+      <li>Build up your combo by avoiding obstacles</li>
+      <li>Try to get the highest score possible!</li>
+    </ul>
+    <button id="back-to-start-btn">Back to Start</button>
   </div>
 
   <script type="module">
