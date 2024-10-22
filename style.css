@@ -127,7 +127,6 @@ button:hover {
   height: 40px;
   background-color: #ffffff;
   border-radius: 50%;
-  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
@@ -268,4 +267,21 @@ button:hover {
     width: 100px;
     height: 100px;
   }
+}
+
+#learn-more-btn {
+  background-color: #ff0000;
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  margin: 20px 0;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#learn-more-btn:hover {
+  background-color: #cc0000;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
