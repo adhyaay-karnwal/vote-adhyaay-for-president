@@ -155,25 +155,31 @@ document.getElementById('back-to-game-btn').addEventListener('click', function()
 });
 
 // Track mouse/touch movement
-function handleMove(clientX) {
+function handleMove(clientX, clientY) {
   if (isGameOver) return;
 
   let gameRect = game.getBoundingClientRect();
-  let newPosition = ((clientX - gameRect.left) / gameRect.width) * 100;
+  let playerRect = player.getBoundingClientRect();
+
+  let newX = clientX - gameRect.left - playerRect.width / 2;
+  let newY = clientY - gameRect.top - playerRect.height / 2;
 
   // Ensure the player stays within the game boundaries
-  newPosition = Math.max(0, Math.min(newPosition, 100));
+  newX = Math.max(0, Math.min(newX, gameRect.width - playerRect.width));
+  newY = Math.max(0, Math.min(newY, gameRect.height - playerRect.height));
   
-  player.style.left = newPosition + '%';
+  player.style.left = newX + 'px';
+  player.style.bottom = 'auto';
+  player.style.top = newY + 'px';
 }
 
 document.addEventListener('mousemove', function(e) {
-  handleMove(e.clientX);
+  handleMove(e.clientX, e.clientY);
 });
 
 document.addEventListener('touchmove', function(e) {
   e.preventDefault(); // Prevent scrolling
-  handleMove(e.touches[0].clientX);
+  handleMove(e.touches[0].clientX, e.touches[0].clientY);
 });
 
 // Start Game function
@@ -301,11 +307,13 @@ function checkCollision() {
   
   obstacles.forEach((obstacle) => {
     let obstacleRect = obstacle.getBoundingClientRect();
+    // Adjust the hitbox size by reducing it slightly
+    let hitboxMargin = 5; // Adjust this value as needed
     if (
-      playerRect.left < obstacleRect.right &&
-      playerRect.right > obstacleRect.left &&
-      playerRect.top < obstacleRect.bottom &&
-      playerRect.bottom > obstacleRect.top
+      playerRect.left < obstacleRect.right - hitboxMargin &&
+      playerRect.right > obstacleRect.left + hitboxMargin &&
+      playerRect.top < obstacleRect.bottom - hitboxMargin &&
+      playerRect.bottom > obstacleRect.top + hitboxMargin
     ) {
       endGame();
     }
@@ -416,3 +424,8 @@ async function initGame() {
 initGame();
 
 // ... (keep the rest of the existing code)
+
+// Add this near the top of the file with other event listeners
+document.getElementById('learn-more-btn').addEventListener('click', function() {
+  window.open('https://sites.google.com/mhrd.org/adhyaay-karnwal/home?authuser=3', '_blank');
+});
