@@ -31,6 +31,22 @@ let difficultyLevel = 1;
 let playerName = '';
 let leaderboard = [];
 
+// Add these lines near the top of the file with other element selections
+let howToPlayBtn = document.getElementById('how-to-play-btn');
+let howToPlayScreen = document.getElementById('how-to-play-screen');
+let backToStartBtn = document.getElementById('back-to-start-btn');
+
+// Add these event listeners near other button listeners
+howToPlayBtn.addEventListener('click', function() {
+  startScreen.classList.add('hidden');
+  howToPlayScreen.classList.remove('hidden');
+});
+
+backToStartBtn.addEventListener('click', function() {
+  howToPlayScreen.classList.add('hidden');
+  startScreen.classList.remove('hidden');
+});
+
 // Particle system
 function createParticles() {
   const particleContainer = document.getElementById('particle-container');
@@ -197,6 +213,13 @@ document.addEventListener('touchmove', function(e) {
 function startGame() {
   resetGame();
   isGameOver = false;
+  
+  // Position the player in the middle of the screen
+  let gameRect = game.getBoundingClientRect();
+  let playerRect = player.getBoundingClientRect();
+  player.style.left = (gameRect.width / 2 - playerRect.width / 2) + 'px';
+  player.style.top = (gameRect.height / 2 - playerRect.height / 2) + 'px';
+  
   gameInterval = setInterval(updateGame, 1000 / 60); // 60 FPS
 }
 
@@ -366,7 +389,7 @@ function resetGame() {
   obstacles = [];
   powerUps.forEach(powerUp => powerUp.remove());
   powerUps = [];
-  player.style.left = '50%';
+  // Remove the player positioning from here
 }
 
 // Initialize the game
@@ -440,4 +463,3 @@ initGame();
 document.getElementById('learn-more-btn').addEventListener('click', function() {
   window.open('https://sites.google.com/mhrd.org/adhyaay-karnwal/home?authuser=3', '_blank');
 });
-
