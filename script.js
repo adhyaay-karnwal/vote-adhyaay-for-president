@@ -109,12 +109,23 @@ async function updateLeaderboard(name, score) {
   await saveLeaderboard();
 }
 
-// Display leaderboard
+// Add this new function to format numbers
+function formatNumber(num) {
+  if (num >= 1000000) {
+    return (num / 1000000).toFixed(1) + 'M';
+  } else if (num >= 1000) {
+    return (num / 1000).toFixed(1) + 'k';
+  } else {
+    return num.toString();
+  }
+}
+
+// Modify the displayLeaderboard function
 function displayLeaderboard() {
   leaderboardList.innerHTML = '';
   leaderboard.forEach((entry, index) => {
     const li = document.createElement('li');
-    li.textContent = `${entry.name}: ${entry.score} votes`;
+    li.textContent = `${entry.name}: ${formatNumber(entry.score)} votes`;
     leaderboardList.appendChild(li);
   });
 }
@@ -244,7 +255,7 @@ function createPowerUp() {
 // Update Game Logic
 function updateGame() {
   score += 1 + Math.floor(combo / 10);
-  scoreElement.textContent = score;
+  scoreElement.textContent = formatNumber(score);
   comboElement.textContent = combo;
 
   if (Math.floor(score / 100) >= difficultyLevel) {
@@ -339,7 +350,7 @@ function checkCollision() {
 async function endGame() {
   clearInterval(gameInterval);
   isGameOver = true;
-  finalScoreElement.textContent = score;
+  finalScoreElement.textContent = formatNumber(score);
   await updateLeaderboard(playerName, score);
   gameOverScreen.classList.remove('hidden');
 }
@@ -429,3 +440,4 @@ initGame();
 document.getElementById('learn-more-btn').addEventListener('click', function() {
   window.open('https://sites.google.com/mhrd.org/adhyaay-karnwal/home?authuser=3', '_blank');
 });
+
