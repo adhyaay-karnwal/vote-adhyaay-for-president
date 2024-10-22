@@ -125,7 +125,7 @@ function displayLeaderboard() {
   leaderboardList.innerHTML = '';
   leaderboard.forEach((entry, index) => {
     const li = document.createElement('li');
-    li.textContent = `${entry.name}: ${formatNumber(entry.score)} votes`;
+    li.textContent = `${entry.name}: ${formatNumber(entry.score)} score`;
     leaderboardList.appendChild(li);
   });
 }
