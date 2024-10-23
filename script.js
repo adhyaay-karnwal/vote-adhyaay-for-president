@@ -141,7 +141,12 @@ function displayLeaderboard() {
   leaderboardList.innerHTML = '';
   leaderboard.forEach((entry, index) => {
     const li = document.createElement('li');
-    li.textContent = `${entry.name}: ${formatNumber(entry.score)} score`;
+    li.className = `leaderboard-item rank-${index + 1}`;
+    li.innerHTML = `
+      <span class="leaderboard-rank">${index + 1}</span>
+      <span class="leaderboard-name">${entry.name}</span>
+      <span class="leaderboard-score">${formatNumber(entry.score)}</span>
+    `;
     leaderboardList.appendChild(li);
   });
 }
@@ -463,3 +468,4 @@ initGame();
 document.getElementById('learn-more-btn').addEventListener('click', function() {
   window.open('https://sites.google.com/mhrd.org/adhyaay-karnwal/home?authuser=3', '_blank');
 });
+
