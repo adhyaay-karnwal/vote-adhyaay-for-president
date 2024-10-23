@@ -166,18 +166,19 @@ button:hover {
   list-style-type: none;
   padding: 0;
   width: 100%;
-  max-width: 600px;
+  max-width: 400px;
   margin: 0 auto;
 }
 
 .leaderboard-item {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
-  padding: 15px;
-  border-radius: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
   transition: all 0.3s ease;
   animation: fadeIn 0.5s ease-out;
+  font-size: 0.9rem;
 }
 
 .leaderboard-item:hover {
@@ -186,11 +187,11 @@ button:hover {
 }
 
 .leaderboard-rank {
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: bold;
-  margin-right: 15px;
-  width: 40px;
-  height: 40px;
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -390,4 +391,33 @@ button:hover {
 
 #back-to-start-btn {
   margin-top: 20px;
+}
+
+/* Add these new styles for better mobile display */
+@media (max-width: 480px) {
+  .leaderboard-item {
+    font-size: 0.8rem;
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+
+  .leaderboard-rank {
+    font-size: 1em;
+    width: 25px;
+    height: 25px;
+    margin-right: 8px;
+  }
+
+  #leaderboard-list {
+    max-width: 300px;
+  }
+
+  .screen {
+    padding: 10px;
+  }
+
+  h2 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
 }
